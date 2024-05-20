@@ -1,0 +1,62 @@
+<h2 class="mb-4">Hii <%=user.data.name%> !</h2>
+<div class="row">
+  <div class="col-md-4">
+    <ul class="list-group">
+      <% if (user.users.length > 0) { user.users.forEach(element => { %>
+      <li
+        class="list-group-item list-group-item-action userItem d-flex" data-id="<%= element._id %>"
+        style="cursor: pointer"
+      >
+        <div>
+          <img
+            src="<%= element.image %>"
+            id="userImage"
+            alt=""
+            width="50px"
+            height="50px"
+          />
+          <%= element.name %>
+        </div>
+        <% if(element.is_online==1){%>
+        <i
+          class="fa-solid fa-check"
+          id="<%=element._id%>-status"
+          style="color: #63e6be"
+        ></i>
+        <% }else{ %>
+        <i
+          class="fa-solid fa-check"
+          id="<%=element._id%>-status"
+          style="color: #ff0000"
+        ></i>
+        <% }%>
+      </li>
+
+      <% }); } %>
+    </ul>
+  </div>
+  <div class="col-md-8">
+    <div class="chat-section" id="chatSection">
+      <div id="chat-container">
+        <div class="sender">sender</div>
+        <div class="receiver">receiver</div>
+      </div>
+      <form action="" id="chat-form">
+        <input
+          type="text"
+          name="message"
+          placeholder="Entre message"
+          id="message-input"
+          class="border"
+        />
+        <input
+          type="submit"
+          id="sendMessage"
+          value="send message"
+          class="btn btn-primary"
+        />
+      </form>
+      <div id="user-data" data-users="<%= JSON.stringify(user.data) %>"></div>
+    </div>
+  </div>
+</div>

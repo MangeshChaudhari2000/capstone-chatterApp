@@ -1,0 +1,61 @@
+
+<div class="registrationPage" style="width: 50%;" >
+  <div class="p-1" style="width: 100%">
+    <%if(message.status==true){%>
+
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <%=message.text%>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+
+    <%}else if(message.status==false){%>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <%=message.text%>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+    <%}else{%> <%}%>
+  </div>
+  <form action="/setting" method="post" enctype="multipart/form-data">
+    <div class="mb-3 d-flex flex-column" style="width: 150px">
+      <img
+        src="<%= message.image %>"
+        alt="userImage"
+        class="img-fluid img-thumbnail mt-4 mb-2"
+        style="width: 150px; z-index: 1"
+      />
+      <input type="file" class="form-control" id="image" name="image" />
+    </div>
+    <div class="mb-3">
+      <label for="name" class="form-label">New Name</label>
+      <input type="text" class="form-control" id="name" name="name" placeholder="<%= message.name %>" />
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">New Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        name="password"
+        placeholder="*******"
+      />
+    </div>
+    <button
+      type="submit"
+      class="btn btn-outline-dark"
+      data-mdb-ripple-color="dark"
+      style="z-index: 1"
+    >
+      update profile
+    </button>
+  </form>
+</div>
