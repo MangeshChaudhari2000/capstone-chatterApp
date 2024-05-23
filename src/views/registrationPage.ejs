@@ -26,36 +26,39 @@
   </div>
   <form action="/register" method="post" enctype="multipart/form-data">
     <div class="mb-3">
-      <label for="name" class="form-label">Name</label>
-      <input type="text" class="form-control" id="name" name="name" />
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="name" required />
     </div>
     <div class="mb-3">
-      <label for="email" class="form-label">Email address</label>
-      <input
-        type="email"
-        class="form-control"
-        id="email"
-        aria-describedby="emailHelp"
-        name="email"
-      />
-      <div id="emailHelp" class="form-text">
-        We'll never share your email with anyone else.
-      </div>
+        <label for="email" class="form-label">Email address</label>
+        <input
+            type="email"
+            class="form-control"
+            id="email"
+            aria-describedby="emailHelp"
+            name="email"
+            required
+        />
+        <div id="emailHelp" class="form-text">
+            We'll never share your email with anyone else.
+        </div>
     </div>
     <div class="mb-3">
-      <label for="password" class="form-label">Password</label>
-      <input
-        type="password"
-        class="form-control"
-        id="password"
-        name="password"
-      />
+        <label for="password" class="form-label">Password</label>
+        <input
+            type="password"
+            class="form-control"
+            id="password"
+            name="password"
+            required
+        />
     </div>
     <div class="mb-3">
-      <label for="image" class="form-label">Profile Photo</label>
-      <input type="file" class="form-control" id="image" name="image" />
+        <label for="image" class="form-label">Profile Photo</label>
+        <input type="file" class="form-control" id="image" name="image" required />
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+</form>
+
 </div>

@@ -1,9 +1,8 @@
 import mongoose from "mongoose";
 
 export const connectToMongoDB = async () => {
-    await mongoose.connect("mongodb://localhost:27017/chatterUp", {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    });
-    console.log("Db is connected");
+    mongoose.connect('mongodb+srv://mvchaudhari2000:AAuGE4R93CZSER3v@cluster0.htvl9ra.mongodb.net/ChatterApp');
+        console.log("Db is connected");
 }
+
+
