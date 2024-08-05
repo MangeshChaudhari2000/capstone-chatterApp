@@ -9,12 +9,13 @@
       >
         <div>
           <img
-            src="<%= element.image %>"
-            id="userImage"
-            alt=""
-            width="50px"
-            height="50px"
-          />
+          src="<%= element.imageSrc %>"
+          id="userImage"
+          alt="User Image"
+          width="50px"
+          height="50px"
+        />
+        
           <%= element.name %>
         </div>
         <% if(element.is_online==1){%>

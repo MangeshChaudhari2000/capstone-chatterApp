@@ -3,6 +3,8 @@ import bcrypt from 'bcrypt';
 import UserRepositories from '../repositories/user.repository.js';
 import jwt from 'jsonwebtoken';
 import session from 'express-session';
+import fs from 'fs';
+import path from 'path';
 
 export class UserController {
 
@@ -33,8 +35,13 @@ export class UserController {
             const { name, email } = req.body;
 
             const hashedPassword = await bcrypt.hash(req.body.password, 12);
+            var img = fs.readFileSync(path.join(path.resolve() + '/public/profile/' + req.file.filename));
+            var encryptedImage = img.toString('base64');
             const obj = {
-                name, email, password: hashedPassword, image: 'profile/' + req.file.filename
+                name, email, password: hashedPassword, image: {
+                    data: Buffer.from(encryptedImage, 'base64'),
+                    contentType: `$(req.file.mimetype)`
+                }
             }
 
 
@@ -106,7 +113,16 @@ export class UserController {
         try {
             console.log("into dashboard");
             const getAllUsers = await this.userRepository.getAllUsers(req.session.data._id);
-            res.render('dashboard', { user: { data: req.session.data, users: getAllUsers } })
+            // Prepare user data with image as base64
+            const usersWithImages = getAllUsers.map(user => {
+                const imageBase64 = user.image.data.toString('base64');
+                const imageSrc = `data:${user.image.contentType};base64,${imageBase64}`;
+                return {
+                    ...user,
+                    imageSrc
+                };
+            });
+            res.render('dashboard', { user: { data: req.session.data, users: usersWithImages } })
         } catch (error) {
 
         }

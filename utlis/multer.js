@@ -1,5 +1,6 @@
 import express from 'express';
 import multer from 'multer';
+import path from 'path';
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -11,4 +12,16 @@ const storage = multer.diskStorage({
     }
 })
 
-export const upload = multer({ storage: storage })
+export const upload = multer({ storage: storage,
+limits:{fileSize:60000},
+fileFilter:(req,file,cb)=>{
+    var filetypes=/jpeg|jpg|png|jfif/;
+    var mimetypes=filetypes.test(filetypes);
+    var extname=filetypes.test(path.extname(file.originalname).toLowerCase());
+    if(mimetypes&&extname) return cb(null,true);
+    else{
+        cb("file only su[pports:"+filetypes)
+    }
+}
+
+ })
