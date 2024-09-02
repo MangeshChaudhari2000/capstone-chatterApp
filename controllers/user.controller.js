@@ -37,8 +37,8 @@ export class UserController {
             const hashedPassword = await bcrypt.hash(req.body.password, 12);
             console.log("inside regiser controller");
             
-            var img = fs.readFile(path.join(path.resolve() + '/public/profile/' + req.file.filename));
-            // var img = fs.readFileSync(path.join(__dirname, 'public', 'profile', req.file.filename));
+            // var img = fs.readFileSync(req.file.filename);
+            var img = fs.readFileSync(path.join(path.resolve() + '/public/profile/' + req.file.filename));
             var encryptedImage = img.toString('base64');
             const obj = {
                 name, email, password: hashedPassword, image: {
