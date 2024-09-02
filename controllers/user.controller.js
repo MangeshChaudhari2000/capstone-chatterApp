@@ -38,7 +38,7 @@ export class UserController {
             console.log("inside regiser controller");
             
             // var img = fs.readFileSync(req.file.filename);
-            var img = fs.readFileSync(path.join(path.resolve() + '/public/profile/' + req.file.filename));
+            var img = fs.readFileSync(path.join(path.resolve(__dirname, '../public/profile/' + req.file.filename)));
             var encryptedImage = img.toString('base64');
             const obj = {
                 name, email, password: hashedPassword, image: {
